@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+body{
+    background-color:black;
+    color:white;
+  }
+
+@theme inline {
+    --animate-shine:shine var(--duration) infinite linear;
+  @keyframes shine {
+  0% {
+    background-position:0% 0%;
+        }
+  50% {
+    background-position:100% 100%;
+        }
+  to {
+    background-position:0% 0%;
+        }
+    }
+  @keyframes shine {
+  0% {
+    background-position:0% 0%;
+        }
+  50% {
+    background-position:100% 100%;
+        }
+  to {
+    background-position:0% 0%;
+        }
+    }
+  --animate-meteor:meteor 5s linear infinite
+;
+  @keyframes meteor {
+  0% {
+    transform:rotate(var(--angle)) translateX(0);
+    opacity:1;
+        }
+  70% {
+    opacity:1;
+        }
+  100% {
+    transform:rotate(var(--angle)) translateX(-500px);
+    opacity:0;
+        }
+    }
+  --animate-aurora:aurora 8s ease-in-out infinite alternate;
+  @keyframes aurora {
+  0% {
+    background-position:0% 50%;
+    transform:rotate(-5deg) scale(0.9);
+        }
+  25% {
+    background-position:50% 100%;
+    transform:rotate(5deg) scale(1.1);
+        }
+  50% {
+    background-position:100% 50%;
+    transform:rotate(-3deg) scale(0.95);
+        }
+  75% {
+    background-position:50% 0%;
+    transform:rotate(3deg) scale(1.05);
+        }
+  100% {
+    background-position:0% 50%;
+    transform:rotate(-5deg) scale(0.9);
+        }
+    }}
+
+button{
+background-color: black;
+color:white;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:200px;
+    
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+}
