@@ -69,6 +69,15 @@ body{
     background-position:0% 50%;
     transform:rotate(-5deg) scale(0.9);
         }
+    }
+  --animate-ripple:ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite;
+  @keyframes ripple {
+  0%, 100% {
+    transform:translate(-50%, -50%) scale(1);
+        }
+  50% {
+    transform:translate(-50%, -50%) scale(0.9);
+        }
     }}
 
 button{
@@ -81,7 +90,7 @@ color:white;
     justify-content: center;
     align-items: center;
     margin-top:200px;
-    
+
 }
 
 .flex{
@@ -92,3 +101,27 @@ color:white;
   width: 90%;
   height: 90%;
 }
+.heroSection{
+  margin-left: 125px;
+  padding-top: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heroSection h1{
+  font-size: 30px;
+  font-weight:500;
+  color: #9b7cf8;
+}
+.heroSection h2{
+  font-size: 20px;
+  font-weight: 400;
+  color: gainsboro;
+}
+.heroSection h3{
+  width: 800px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
