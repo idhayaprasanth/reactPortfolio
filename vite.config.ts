@@ -1,33 +1,23 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import fs from "fs";
 import tailwindcss from "@tailwindcss/vite";
 
-// https://vitejs.dev/config/
+// No need to import fs or use certs
+
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(), // Ensure this is included
-  ],
+  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   server: {
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, "./localhost-key.pem")), // Correct path to the key
-      cert: fs.readFileSync(path.resolve(__dirname, "./localhost.pem")), // Correct path to the certificate
-    },
-     watch: {
+    host: "0.0.0.0", // Allow external devices to access
+    port: 5173,
+    watch: {
       usePolling: true,
     },
-   
-    proxy: {
-      // Proxy settings, if needed for local APIs
-    },
+    // https: false  <-- no https section
   },
- 
-  },
-);
+});

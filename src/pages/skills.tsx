@@ -1,11 +1,40 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Vortex } from "@/components/ui/vortex";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
+import { speakIntro } from "./VoiceIntro"; // Ensure correct path
+import voice from "../assets/gif/voice.gif";
+import voiceimg from "../assets/gif/voice-img.gif";
 
 const Skills = () => {
+  const [isVoicePlaying, setIsVoicePlaying] = useState(false);
+
+  useEffect(() => {
+    speakIntro(
+      "Presenting the skills that define Idhaya Prasanth's technical expertise.",
+      () => {
+        console.log("Speech started");
+        setIsVoicePlaying(true);
+      },
+      () => {
+        console.log("Speech ended");
+        setIsVoicePlaying(false);
+      }
+    );
+  }, []);
+
   return (
     <div className="min-h-screen min-w-full bg-black text-white py-15 relative overflow-hidden">
+      {/* Voice Indicator */}
+      <div className="absolute top-0 left-5 z-50">
+        <img
+          src={isVoicePlaying ? voice : voiceimg}
+          alt="Voice Indicator"
+          className="w-[80px] h-[80px] sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px] object-contain"
+        />
+      </div>
+
       <div className="w-full h-full">
         <Vortex className="w-full h-full">
           <div className="max-w-5xl mx-auto px-4">

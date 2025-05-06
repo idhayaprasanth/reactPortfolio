@@ -1,24 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import sleepImg from "../assets/gif/sleep5.gif";
 import bootingGif from "../assets/gif/booting6.gif";
 import onImg from "../assets/gif/booting6.gif";
 import voice from "../assets/gif/voice.gif";
 import voiceimg from "../assets/gif/voice-img.gif";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-import {
-  AnimatedSpan,
-  Terminal,
-  TypingAnimation,
-} from "@/components/magicui/terminal";
+import { AnimatedSpan, Terminal } from "@/components/magicui/terminal";
 import { ShineBorder } from "@/components/magicui/shine-border";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
-import { Ripple } from "@/components/magicui/ripple";
-import { Particles } from "@/components/magicui/particles";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import { speakIntro } from "./VoiceIntro";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
-
-
+import { Particles } from "@/components/magicui/particles";
 
 const CpuPower = () => {
   const [state, setState] = useState("sleep");
@@ -28,7 +20,23 @@ const CpuPower = () => {
   const [isVoicePlaying, setIsVoicePlaying] = useState(false); // State to track if voice is playing
 
   useEffect(() => {
+    // Check sessionStorage for the stored state
+    const bootedState = sessionStorage.getItem("cpuState");
+
+    if (bootedState === "on") {
+      setState("on");
+      setImageSrc(onImg);
+      setShowNavLinks(true);
+      setShowIP(true);
+    } else {
+      setState("sleep");
+      setImageSrc(sleepImg);
+    }
+  }, []);
+
+  useEffect(() => {
     if (state === "booting") {
+      // Disable scrolling when booting
       document.body.style.overflow = "hidden";
       setImageSrc(bootingGif);
 
@@ -38,6 +46,8 @@ const CpuPower = () => {
         setShowNavLinks(true);
         setShowIP(true);
         document.body.style.overflow = "auto";
+        // Store that the CPU has finished booting and is now "on"
+        sessionStorage.setItem("cpuState", "on");
       }, 1000);
 
       return () => {
@@ -50,8 +60,9 @@ const CpuPower = () => {
   const handlePowerOn = () => {
     if (state === "sleep") {
       speakIntro(
+        "Hello!, a creative tech professional turning ideas into impactful solutions. Welcome to Idhaya Prasanth's interactive portfolio.",
         () => setIsVoicePlaying(true), // When voice starts
-        () => setIsVoicePlaying(false),
+        () => setIsVoicePlaying(false), // When voice ends
         2000 // When voice ends
       );
       setState("booting");
@@ -158,11 +169,11 @@ const CpuPower = () => {
               <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
               Resume
             </a>
-            <a href="#projects" className="nav-link projects">
+            <a href="project" className="nav-link projects">
               <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
               Projects
             </a>
-            <a href="#skills" className="nav-link skills">
+            <a href="skills" className="nav-link skills">
               <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
               Skills
             </a>
@@ -381,7 +392,7 @@ const CpuPower = () => {
 
         .social-line {
           width: 2px;
-          height: 218px;
+          height: 150px;
           background-color: white;
           margin-top: 10px;
         }
