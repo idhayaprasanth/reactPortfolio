@@ -3,8 +3,6 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 
-// No need to import fs or use certs
-
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
@@ -12,12 +10,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    outDir: "dist", // <-- This tells Vercel where the build output goes
+  },
   server: {
-    host: "0.0.0.0", // Allow external devices to access
+    host: "0.0.0.0",
     port: 5173,
     watch: {
       usePolling: true,
     },
-    // https: false  <-- no https section
   },
 });
