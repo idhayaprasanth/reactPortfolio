@@ -6,6 +6,8 @@ import Project from "./pages/Projects";
 function Routing() {
   return (
     <Router basename="/reactPortfolio">
+      {" "}
+      {/* Set the basename correctly for GitHub Pages */}
       <Routes>
         <Route path="/" element={<ProjectsView />} />
         <Route path="skills" element={<Skills />} />
