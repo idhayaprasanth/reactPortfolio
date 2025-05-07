@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: "dist", // <-- This tells Vercel where the build output goes
+    outDir: "dist", // Output directory
   },
   server: {
     host: "0.0.0.0",
@@ -20,4 +20,5 @@ export default defineConfig({
       usePolling: true,
     },
   },
+  base: "/reactPortfolio/", // Replace <REPO_NAME> with your GitHub repository name
 });
