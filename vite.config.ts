@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -20,5 +20,5 @@ export default defineConfig({
       usePolling: true,
     },
   },
-  base: "/reactPortfolio/", // Replace <REPO_NAME> with your GitHub repository name
-});
+  base: mode === "production" ? "/reactPortfolio/" : "/", // Conditional base
+}));
